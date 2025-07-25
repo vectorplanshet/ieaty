@@ -52,9 +52,67 @@
     z-index: 1000; /* Слои, чтобы быть выше карты */
 }
 .leaflet-control-layers {
-    z-index: 2000; /* Выше, чем topbar */
-    position: relative; /* или absolute, если нужно */
+  z-index: 2000;
+  position: relative;
+  zoom: 0.5;
+  transform-origin: top left;
 }
+
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    background: #252b36;
+    padding: 10px 12px;
+    border-radius: 7px;
+    z-index: 1001;
+    max-width: 180px;
+    width: 90%;
+    transition: all 0.35s ease;
+    color: #f0f0f0;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 7px;
+}
+
+.modal h2 {
+    font-size: 11px;
+    color: #ffffff;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 4px 5px;
+    font-size: 7px;
+    background-color: #1e232c;
+    color: #ffffff;
+    border-radius: 4px;
+    border: 1px solid #3a4152;
+}
+
+input[type="text"]:focus {
+    border-color: #4a90e2;
+    background-color: #252b36;
+    outline: none;
+}
+
+.modal-button {
+    width: 100%;
+    padding: 6px;
+    font-size: 7.5px;
+    margin-top: 10px;
+    background-color: #4674dc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
 .modal-background {
     position: fixed;
     top: 0;
@@ -67,63 +125,11 @@
     backdrop-filter: blur(4px);
 }
 
-.modal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.95);
-    background: #252b36;
-    padding: 20px 24px;
-    border-radius: 14px;
-    z-index: 1001;
-    max-width: 360px;
-    width: 90%;
-    transition: all 0.35s ease;
-    color: #f0f0f0;
-    font-family: 'Segoe UI', sans-serif;
-}
-
 .modal.show {
     display: block;
     transform: translate(-50%, -50%) scale(1);
 }
 
-.modal h2 {
-    font-size: 22px;
-    color: #ffffff;
-    margin-bottom: 16px;
-    text-align: center;
-}
-
-input[type="text"] {
-    width: 100%;
-    padding: 8px 10px;
-    font-size: 14px;
-    background-color: #1e232c;
-    color: #ffffff;
-    border-radius: 8px;
-    border: 2px solid #3a4152;
-}
-
-input[type="text"]:focus {
-    border-color: #4a90e2;
-    background-color: #252b36;
-    outline: none;
-}
-
-.modal-button {
-    width: 100%;
-    padding: 12px;
-    font-size: 15px;
-    margin-top: 20px;
-    background-color: #4674dc;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
 :root {
     --map-tiles-filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.5) brightness(0.7) grayscale(3);
 }
@@ -234,21 +240,22 @@ input[type="text"]:focus {
         }
 
         /* Delete Button */
-        #deleteButton {
-            width: 37px;
-      height: 32px;
-      border-radius: 2px;
-      background-color: #ffffff;
-      color: rgb(130, 130, 130);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      font-size: 16px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.3);
-      border: none;
-      cursor: pointer;
-    }
+      #deleteButton {
+    width: 18.5px;           /* 37 / 2 */
+    height: 16px;            /* 32 / 2 */
+    border-radius: 1px;      /* 2 / 2 */
+    background-color: #ffffff;
+    color: rgb(130, 130, 130);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: 8px;          /* 16 / 2 */
+    box-shadow: 0 0.5px 2px rgba(0,0,0,0.3);  /* 0 1px 4px / 2 */
+    border: none;
+    cursor: pointer;
+}
+
         /* Smooth Transition for Modals */  
         .modal.show {
             display: block;
@@ -279,8 +286,8 @@ input[type="text"]:focus {
 
         /* Modal Input Background for Target Coordinates */
         #targetModal {
-            padding: 20px;
-            border-radius: 10px;
+            padding: 10px;
+            border-radius: 5px;
         }
         #alert-container {
             position: absolute;
@@ -308,33 +315,34 @@ input[type="text"]:focus {
 .leaflet-control-attribution {
     display: none !important;
 }
-        #alert-menu h3 {
-            margin: 0 0 10px;
-            text-align: center;
-            font-size: 16px;
-            color: #c4c4c4;
-        }
-        #alert-menu div {
-            margin-bottom: 5px;
-        }
-        #alert-menu input[type=checkbox] {
-            margin-right: 5px;
-        }
-        button#alert-button {
-            width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background-color: #e91e63;
-      color: white;
-      font-weight: bold;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      border: none;
-      cursor: pointer;
-    }
+#alert-menu h3 {
+    margin: 0 0 5px;         /* 0 0 10px / 2 */
+    text-align: center;
+    font-size: 8px;          /* 16px / 2 */
+    color: #c4c4c4;
+}
+#alert-menu div {
+    margin-bottom: 2.5px;    /* 5px / 2 */
+}
+#alert-menu input[type=checkbox] {
+    margin-right: 2.5px;     /* 5px / 2 */
+}
+button#alert-button {
+    width: 17px;             /* 34px / 2 */
+    height: 17px;            /* 34px / 2 */
+    border-radius: 50%;
+    background-color: #e91e63;
+    color: white;
+    font-weight: bold;
+    font-size: 7px;          /* 14px / 2 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+}
+
     .overlay {
     position: absolute;
     top: 0;
@@ -388,49 +396,50 @@ input[type="text"]:focus {
         }
 
         /* Стили меню */
-        #passwordContainer {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #252b36; /* Градиент синего */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        color: white;
-        text-align: center;
-        z-index: 1010;
-    }
+#passwordContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #252b36; /* Градиент синего */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    text-align: center;
+    z-index: 1010;
+}
 
-    #passwordContainer img {
-        width: 250px;
-        height: 25x;
-    }
+#passwordContainer img {
+    width: 125px;
+    height: auto;
+}
 
-    #loginInput, #passwordInput {
-        padding: 20px 15px;
-        font-size: 14px;
-        width: 400px;
-        height: 30px;
-        border: none;
-        border-radius: 4px;
-        background-color: #3d4558;
-        color: #fff;
-        text-align: left;
-        background-position: 15px center;
-        background-repeat: no-repeat;
-        background-size: 25px;
-    }
+#loginInput, #passwordInput {
+    padding: 10px 7.5px;     /* 20px 15px */
+    font-size: 7px;          /* 14px */
+    width: 200px;            /* 400px */
+    height: 15px;            /* 30px */
+    border: none;
+    border-radius: 2px;      /* Было 4px, делим на 2 */
+    background-color: #3d4558;
+    color: #fff;
+    text-align: left;
+    background-position: 7.5px center;  /* 15px /2 */
+    background-repeat: no-repeat;
+    background-size: 12.5px;             /* 25px /2 */
+}
 
-    #loginInput::placeholder,
-    #passwordInput::placeholder {
-        color: #b0b3b8;
-    }
-    #submitButton {
-    padding: 12px 40px; /* помягче */
-    font-size: 14px;
+#loginInput::placeholder,
+#passwordInput::placeholder {
+    color: #b0b3b8;
+}
+
+#submitButton {
+    padding: 6px 20px;       /* 12px 40px */
+    font-size: 7px;          /* 14px */
     background-color: #4674dc;
     color: white;
     border: none;
@@ -439,51 +448,55 @@ input[type="text"]:focus {
     border-radius: 0px;
 }
 
-    #submitButton:hover {
-        background-color: #5c90de;
-    }
-
-    #submitButton:active {
-        background-color: #0033cc;
-        transform: scale(0.98);
-    }
-        #menu-icon {
-    position: absolute;
-    top: 17px;  /* Располагаем сверху */
-    left: 20px; /* Иконка будет слева */
-    width: 170px;  /* Задаем размер иконки (по желанию) */
-    height: 25px; /* Задаем размер иконки (по желанию) */
+#submitButton:hover {
+    background-color: #5c90de;
 }
+
+#submitButton:active {
+    background-color: #0033cc;
+    transform: scale(0.98);
+}
+
+#menu-icon {
+    position: absolute;
+    top: 8.5px;      /* 17px */
+    left: 10px;      /* 20px */
+    width: 85px;     /* 170px */
+    height: 12.5px;  /* 25px */
+}
+
 .inputWrapper {
-        display: flex;
-        flex-direction: column;
-        gap: 10px; /* Расстояние между логином и паролем */
-        margin-bottom: 205px; /* Отступ вниз до кнопки */
-    }
+    display: flex;
+    flex-direction: column;
+    gap: 5px;           /* 10px */
+    margin-bottom: 102.5px; /* 205px */
+}
+
 .custom-menu {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  z-index: 1000;
+    position: absolute;
+    bottom: 10px;      /* 20px */
+    right: 10px;       /* 20px */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;         /* 20px */
+    z-index: 1000;
 }
 
 .menu-row {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 6px;
-  justify-content: flex-start;  /* Добавлено для выравнивания по левому краю */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3px;          /* 6px */
+    justify-content: flex-start;
 }
 
+
 .custom-button {
-  width: 37px;
-  height: 28px;
+  width: 18.5px;        /* 37 / 2 */
+  height: 14px;         /* 28 / 2 */
   background-color: white;
-  border-radius: 2px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  border-radius: 1px;   /* 2 / 2 */
+  box-shadow: 0 0.5px 2px rgba(0,0,0,0.3); /* 0 1px 4px /2 */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -491,37 +504,40 @@ input[type="text"]:focus {
 }
 
 .custom-button img {
-  width: 25px;
-  height: 25px;
+  width: 12.5px;        /* 25 / 2 */
+  height: 12.5px;       /* 25 / 2 */
 }
 
+.custom-button.green {
+  background-color: #ffffff;
+}
 
-    .custom-button.green {
-      background-color: #ffffff;
-    }
-    #warning-message {
+#warning-message {
   position: fixed;
   top: 0;
   width: 100%;
-height: 25px;
+  height: 12.5px;       /* 25 / 2 */
   background-color: rgba(0, 0, 0, 0.8);
   color: rgb(255, 0, 68);
   text-align: center;
-  padding: 5px;
-  font-size: 14px;
+  padding: 2.5px;       /* 5 / 2 */
+  font-size: 7px;       /* 14 / 2 */
   z-index: 9999;
 }
+
 .hidden {
   display: none;
-}/* Медиазапросы для мобильных устройств */
+}
+
+/* Медиазапросы для мобильных устройств */
 @media (max-width: 768px) {
     .icon-container {
-        font-size: 12px;
+        font-size: 6px;      /* 12 / 2 */
     }
 
     .icon-container .icon {
-        width: 28px;
-        height: 28px;
+        width: 14px;         /* 28 / 2 */
+        height: 14px;        /* 28 / 2 */
     }
 
     .label-container,
@@ -530,9 +546,10 @@ height: 25px;
     .rls-container,
     .label1-container,
     .r1-container {
-        font-size: 13px;
+        font-size: 6.5px;    /* 13 / 2 */
     }
 }
+
     </style>
 </head>
 <body>
@@ -553,7 +570,7 @@ height: 25px;
   <!-- Меню в правом нижнем углу -->
   <div class="custom-menu">
     <div class="menu-row">
-            <div style="width: 34px;"></div>
+            <div style="width: 55px;"></div>
       <div class="custom-button">
         <img src="reload.png" alt="Reload" />
       </div>
@@ -586,7 +603,7 @@ height: 25px;
       </div>
     </div>
     <div class="menu-row">
-        <div style="width: 37px;"></div>
+        <div style="width: 57px;"></div>
       <!-- Кнопка тревоги -->
       <button id="alert-button">0</button>
       <!-- Кнопка удаления -->
@@ -721,7 +738,7 @@ height: 25px;
     });
         const map = L.map('map', {
             zoomControl: false
-        }).setView([48.3794, 31.1656], 7);
+        }).setView([48.3794, 31.1656], 6);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
@@ -1405,7 +1422,7 @@ fetch("front.json")
         // Возвращаем стиль с прозрачностью
         return {
           color: color,
-          weight: 1,
+          weight: 1.5,
           opacity: opacity,
           fillColor: color,
           fillOpacity: fillOpacity
@@ -1504,7 +1521,6 @@ let objectIdCounter2 = '9900';
 function getNextObjectId3() {
     return objectIdCounter2++;
 }
-    // Добавляем zoom-контрол внизу
     </script>
 </body>
 </html>
