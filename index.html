@@ -150,10 +150,10 @@ input[type="text"]:focus {
 
         /* Сдвигаем контейнер вправо для нужных объектов */
         .shifted-info-container {
-            margin-left: 4.3px; /* Сдвиг на 20px вправо, можно менять значение */
+            margin-left: 2.1px; /* Сдвиг на 20px вправо, можно менять значение */
         }
         .shifted-info-containerr {
-            margin-right: 25px;
+            margin-right: 10px;
         }
     
         .red-id {
@@ -295,16 +295,16 @@ input[type="text"]:focus {
             left: 10px;
             z-index: 1000;
         }
-        #alert-menu {
-            background: #d2d2d2;
-    padding: 20px;
+#alert-menu {
+    background: #d2d2d2;
+    padding: 10px; /* было 20px */
     display: none; /* Изначально скрыто */
     border: none;
-    width: 250px;
-    height: 1103px;
+    width: 125px; /* было 250px */
+    height: 551.5px; /* было 1103px */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #000000;
-    font-size: 14px;
+    font-size: 7px; /* было 14px */
     transition: all 0.3s ease;
     position: absolute;
 }
@@ -331,10 +331,10 @@ button#alert-button {
     width: 17px;             /* 34px / 2 */
     height: 17px;            /* 34px / 2 */
     border-radius: 50%;
-    background-color: #e91e63;
+    background-color: #50785D;
     color: white;
     font-weight: bold;
-    font-size: 7px;          /* 14px / 2 */
+    font-size: 6px;          /* 14px / 2 */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -372,6 +372,9 @@ button#alert-button {
     background-color: #f0f0f0;
 }
 
+.leaflet-popup-content-wrapper {
+    zoom: 0.5;
+}
 /* Стиль для заголовка в окне */
 .leaflet-popup-content h3 {
     margin-top: 0;
@@ -1077,19 +1080,19 @@ updateOverlayFilter();
     } else if (speed >= 959 && speed <= 960) {
         iconUrl = 'storm-shadow.png';
         shiftedClass = 'shifted-info-container';
-        iconClass = 'blue-id';
+        iconClass = 'zl';
         lineColor = '#006aff';  // Set blue line color for blue objects
     } else if (speed >= 190 && speed <= 191) {
         iconUrl = 'lutiy.png';
-        iconClass = 'blue-id';
+        iconClass = 'zl';
         lineColor = '#006aff';  // Set blue line color for blue objects
     } else if (speed >= 201 && speed <= 202) {
         iconUrl = 'beaver.png';
-        iconClass = 'blue-id';
+        iconClass = 'zl';
         lineColor = '#006aff';  // Set blue line color for blue objects
     } else if (speed >= 329 && speed <= 330) {
         iconUrl = 'rys`.png';
-        iconClass = 'blue-id';
+        iconClass = 'zl';
         lineColor = '#006aff';  // Set blue line color for blue objects
     } else if (speed >= 74 && speed <= 75) {
         iconUrl = 'Molnia.png';
@@ -1169,19 +1172,34 @@ updateOverlayFilter();
     </div>
   `;
 } else if (iconClass === 'kr') {
-  const objectIdKr = getNextObjectIdKr();
+      iconUrl = 'kalibr.png';
+      iconClass = 'red-id';
   iconHtml = `
     <div class="icon-container ${iconClass}">
       <img src="${iconUrl}" class="icon" />
       <div class="info-container ${shiftedClass} ${shiftedClasss}">
-        <span class="label-container ${iconClass}">${objectIdKr}р</span>
+        <span class="label-container ${iconClass}">${objectId}р</span>
         <span class="r-container ${iconClass}">ПП·</span>
         <span class="rls-container ${iconClass}">ㅤ</span>
       </div>
     </div>
   `;
+} else if (iconClass === 'zl') {
+  const objectId2 = getNextObjectIdBlue();
+    iconUrl = 'zl.png';
+    iconHtml = `
+        <div class="icon-container ${iconClass}">
+            <img src="${iconUrl}" class="icon" />
+            <div class="info-container ${shiftedClass} ${shiftedClasss}">
+                <span class="label-container ${iconClass}">0${objectId2}р</span>
+                <span class="r-container ${iconClass}">ЗЛ</span>
+                        <span class="rls-container ${iconClass}">ㅤ</span>
+            </div>
+        </div>
+    `;
 } else if (iconClass === 'blue-id') {
   const objectId2 = getNextObjectIdBlue();
+    iconUrl = 'blue.png';
   iconHtml = `
     <div class="icon-container ${iconClass}">
       <img src="${iconUrl}" class="icon" />
@@ -1512,13 +1530,22 @@ function getNextObjectId() {
 let objectIdCounterBlue = '0750';
 
 function getNextObjectIdBlue() {
-  return counterBlueId++;
+  return objectIdCounterBlue++;
 }
 let counterLitakId = 9900;
 function getNextLitakId() {
     return counterLitakId++;
 }
+    function updateAlertCount() {
+      const bodyText = document.body.innerText || document.body.textContent;
+      const matches = bodyText.match(/(ПП|СВ|ЛБ|ЗЛ)/gi);
+      const count = matches ? matches.length : 0;
+      document.getElementById('alert-button').textContent = count;
+    }
 
+    // Проверяем каждые 500 мс
+    setInterval(updateAlertCount, 500);
+    updateAlertCount();
     </script>
 </body>
 </html>
