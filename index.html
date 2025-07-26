@@ -1156,44 +1156,42 @@ updateOverlayFilter();
         // Если скорость не попала ни в одно условие, ставим "neyst tip.png"
         iconUrl = 'neyst tip.png';
     }
-    if (iconUrl === 'litak.png') {
-        const objectId3 = getNextObjectId3(); 
-    iconHtml = `
-        <div class="icon-container ${iconClass}">
-            <img src="${iconUrl}" class="icon" />
-             <div class="info-container ${shiftedClass} ${shiftedClasss}">
-                <span class="label-container ${iconClass}">${objectId3}</span> 
-                <span class="r-container ${iconClass}">ЛБ·</span> 
-                <span class="rls-container ${iconClass}">ㅤ</span> <!-- РЛС -->                  
-            </div>
-        </div>
-    `;
-    } if (iconClass === 'kr') {
-        iconUrl = 'kalibr.png';
-        iconClass = 'red-id';
-    iconHtml = `
-        <div class="icon-container ${iconClass}">
-            <img src="${iconUrl}" class="icon" />
-             <div class="info-container ${shiftedClass} ${shiftedClasss}">
-                <span class="label-container ${iconClass}">${objectId}р</span> 
-                <span class="r-container ${iconClass}">ПП·</span> 
-                <span class="rls-container ${iconClass}">ㅤ</span> <!-- РЛС -->                  
-            </div>
-        </div>
-    `;
+  if (iconUrl === 'litak.png') {
+  const objectId3 = getNextLitakId();
+  iconHtml = `
+    <div class="icon-container ${iconClass}">
+      <img src="${iconUrl}" class="icon" />
+      <div class="info-container ${shiftedClass} ${shiftedClasss}">
+        <span class="label-container ${iconClass}">${objectId3}</span>
+        <span class="r-container ${iconClass}">ЛБ·</span>
+        <span class="rls-container ${iconClass}">ㅤ</span>
+      </div>
+    </div>
+  `;
+} else if (iconClass === 'kr') {
+  const objectIdKr = getNextObjectIdKr();
+  iconHtml = `
+    <div class="icon-container ${iconClass}">
+      <img src="${iconUrl}" class="icon" />
+      <div class="info-container ${shiftedClass} ${shiftedClasss}">
+        <span class="label-container ${iconClass}">${objectIdKr}р</span>
+        <span class="r-container ${iconClass}">ПП·</span>
+        <span class="rls-container ${iconClass}">ㅤ</span>
+      </div>
+    </div>
+  `;
 } else if (iconClass === 'blue-id') {
-    const objectId2 = getNextObjectId1(); 
-    iconUrl = 'blue.png';
-    iconHtml = `
-        <div class="icon-container ${iconClass}">
-            <img src="${iconUrl}" class="icon" />
-            <div class="info-container ${shiftedClass} ${shiftedClasss}">
-                <span class="label-container ${iconClass}">0${objectId2}р</span>
-                <span class="r-container ${iconClass}">СВ</span>
-                <span class="rls-container ${iconClass}">ㅤ</span> <!-- РЛС -->
-            </div>
-        </div>
-    `;
+  const objectId2 = getNextObjectIdBlue();
+  iconHtml = `
+    <div class="icon-container ${iconClass}">
+      <img src="${iconUrl}" class="icon" />
+      <div class="info-container ${shiftedClass} ${shiftedClasss}">
+        <span class="label-container ${iconClass}">0${objectId2}р</span>
+        <span class="r-container ${iconClass}">СВ</span>
+        <span class="rls-container ${iconClass}">ㅤ</span>
+      </div>
+    </div>
+  `;
 } else {
     // Основной шаблон для всех остальных случаев
     iconHtml = `
@@ -1410,7 +1408,7 @@ fetch("front.json")
     L.geoJSON(data, {
       style: function(feature) {
         let color = '#bdbdbd'; // По умолчанию цвет "неизвестно"
-        let opacity = 1; // По умолчанию непрозрачность для "неизвестно"
+        let opacity = 1.5; // По умолчанию непрозрачность для "неизвестно"
         let fillOpacity = 1; // По умолчанию заливка непрозрачная
 
         if (feature.properties.name === 'Багатокутник 4') {
@@ -1422,7 +1420,7 @@ fetch("front.json")
         // Возвращаем стиль с прозрачностью
         return {
           color: color,
-          weight: 1,
+          weight: 2,
           opacity: opacity,
           fillColor: color,
           fillOpacity: fillOpacity
@@ -1511,16 +1509,16 @@ function getNextObjectId() {
     `;
     return iconHTML;
 }
-let objectIdCounter1 = '0750';
+let objectIdCounterBlue = '0750';
 
-function getNextObjectId1() {
-    return objectIdCounter1++;
+function getNextObjectIdBlue() {
+  return counterBlueId++;
 }
-let objectIdCounter2 = '9900';
+let counterLitakId = 9900;
+function getNextLitakId() {
+    return counterLitakId++;
+}
 
-function getNextObjectId3() {
-    return objectIdCounter2++;
-}
     </script>
 </body>
 </html>
