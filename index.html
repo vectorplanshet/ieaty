@@ -191,7 +191,7 @@ input[type="text"]:focus {
             margin-left: 25px;
         }
         .info-container {
-            line-height: 7.5px;
+            line-height: 9px;
         }
         .label-container {
             font-size: 6.5px;
@@ -213,7 +213,7 @@ input[type="text"]:focus {
             display: flex;
     flex-direction: column;
     justify-content: center;
-    font-weight: 600;
+    font-weight: 400;
     color: black;
    }    
         .rls-container {
@@ -228,13 +228,13 @@ input[type="text"]:focus {
         .label1-container {
             font-size: 6.5px;
             font-family: 'Roboto', sans-serif;
-            font-weight: 600;
+            font-weight: 400;
             -webkit-text-stroke-color: black;
             color: black;
         }
         .r1-container {
             font-size: 6.5px;
-            font-weight: 600;
+            font-weight: 400;
             font-family: 'Roboto', sans-serif;
             color: black;
         }
@@ -269,17 +269,17 @@ input[type="text"]:focus {
                 opacity: 1;
             }
         }
-        .icon-container {
+.icon-container {
     display: flex;
     align-items: center;
     gap: 6.5px;
     font-size: 7px;
     position: absolute;
-    white-space: nowrap; /* Убираем перенос текста */
+    white-space: nowrap;
 }
         .icon-container .icon {
-            width: 17px;
-            height: 17px;
+            width: 16px;
+            height: 16px;
             object-fit: cover;
             display: block;
         }
@@ -1330,7 +1330,7 @@ function updatePosition(timestamp) {
     const [newLat, newLng] = calculateNewPosition(lat, lng, speed, elapsedTime, targetLat, targetLng);
     marker.setLatLng([newLat, newLng]);
 
-    if (haversine(newLat, newLng, targetLat, targetLng) > 1) {
+    if (haversine(newLat, newLng, targetLat, targetLng) > 0.1) {
         requestAnimationFrame(updatePosition);
     } else {
         marker.remove(); // Удалить маркер, если цель достигнута
