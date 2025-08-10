@@ -193,6 +193,9 @@ input[type="text"]:focus {
         .info-container {
             line-height: 9px;
         }
+                .info-container1 {
+            line-height: 7px;
+        }
         .label-container {
             font-size: 6.5px;
             font-weight: 600;
@@ -213,7 +216,7 @@ input[type="text"]:focus {
             display: flex;
     flex-direction: column;
     justify-content: center;
-    font-weight: 400;
+    font-weight: 600;
             color: #333333;
    }    
         .rls-container {
@@ -228,13 +231,13 @@ input[type="text"]:focus {
         .label1-container {
             font-size: 6.5px;
             font-family: 'Roboto', sans-serif;
-            font-weight: 400;
+            font-weight: 600;
             -webkit-text-stroke-color: black;
             color: #333333;
         }
         .r1-container {
             font-size: 6.5px;
-            font-weight: 400;
+            font-weight: 600;
             font-family: 'Roboto', sans-serif;
             color: #333333;
         }
@@ -283,6 +286,20 @@ input[type="text"]:focus {
             object-fit: cover;
             display: block;
         }
+.icon-container1 {
+    display: flex;
+    align-items: center;
+    gap: 6.5px;   /* 13 / 2 */
+    font-size: 7px; /* 14 / 2 */
+    position: absolute;
+    white-space: nowrap; /* Убираем перенос текста */
+}
+.icon-container1 .icon {
+    width: 19px;   /* 34 / 2 */
+    height: 19px;  /* 34 / 2 */
+    object-fit: cover;
+    display: block;
+}
 
         /* Modal Input Background for Target Coordinates */
         #targetModal {
@@ -993,11 +1010,11 @@ updateOverlayFilter();
 
     // Меняем iconHtml ПОЛНОСТЬЮ
     iconHtml = `
-        <div class="icon-container ${iconClass}">
+  <div class="icon-container1 ${iconClass}">
             <img src="${iconUrl}" class="icon" />
-            <div class="info-container ${shiftedClass} ${shiftedClasss}">
+            <div class="info-container1 ${shiftedClass} ${shiftedClasss}">
                 <span class="label1-container ${iconClass}">${objectId1} ${kievTime}</span>
-                <div class="info-container ${shiftedClass} ${shiftedClasss}">
+                <div class="info-container1 ${shiftedClass} ${shiftedClasss}">
                 <span class="r1-container ${iconClass}">EPA</span>
                 <span class="rls1-container ${iconClass}">interesting s</span>
             </div>
