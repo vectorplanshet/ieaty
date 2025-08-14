@@ -1343,13 +1343,19 @@ marker.on('popupopen', () => {
 marker.on('click', () => marker.openPopup());
 
 // Поворот иконки
-function rotateIcon(lat1, lng1, lat2, lng2) {
+function rotateIcon(lat1, lng1, lat2, lng2, speed) {
+    if (speed === 0) {
+        marker._icon.querySelector('.icon').style.transform = `rotate(0deg)`; // не вертим
+        return;
+    }
     const course = calculateCourse(lat1, lng1, lat2, lng2) * (180 / Math.PI);
     const angle = (course + 360) % 360;
     marker._icon.querySelector('.icon').style.transform = `rotate(${angle}deg)`;
 }
 
-rotateIcon(lat, lng, targetLat, targetLng);
+
+rotateIcon(lat, lng, targetLat, targetLng, speed);
+
 
 // Добавляем маркер в массив
 markers.push(marker);
@@ -1364,7 +1370,7 @@ function updatePosition(timestamp) {
     );
 
     marker.setLatLng([newLat, newLng]);
-    rotateIcon(newLat, newLng, targetLatVar, targetLngVar);
+    rotateIcon(newLat, newLng, targetLatVar, targetLngVar, speed);
 
     if (haversine(newLat, newLng, targetLatVar, targetLngVar) > 0.1 && isActive) {
         requestAnimationFrame(updatePosition);
