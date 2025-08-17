@@ -193,6 +193,12 @@ input[type="text"]:focus {
         .info-container {
             line-height: 9px;
         }
+        .iconname {
+            line-height: 5px;
+        }
+                .iconname {
+            line-height: 5px;
+        }
                 .info-container1 {
             line-height: 7px;
         }
@@ -295,8 +301,8 @@ input[type="text"]:focus {
     white-space: nowrap; /* Убираем перенос текста */
 }
 .icon-container1 .icon {
-    width: 19px;   /* 34 / 2 */
-    height: 19px;  /* 34 / 2 */
+    width: 17.5px;   /* 34 / 2 */
+    height: 17.5px;  /* 34 / 2 */
     object-fit: cover;
     display: block;
 }
@@ -1209,14 +1215,35 @@ updateOverlayFilter();
     </div>
   `;
 } else {
+    const iconTypes = {
+    "shahed 238.png": "Ударний дрон",
+    "shahed.png": "Ударний дрон",
+    "кр.png": "Крилата ракета"
+};
+
+// В блоке else (для обычных иконок)
+const iconName = iconTypes[iconUrl] || "Невідомий об'єкт";
+
+// Генерация случайного числа от 1 до 200
+const randomNumber = Math.floor(Math.random() * 200) + 1;
+
+
     // Основной шаблон для всех остальных случаев
     iconHtml = `
         <div class="icon-container ${iconClass}">
             <img src="${iconUrl}" class="icon" />
              <div class="info-container ${shiftedClass} ${shiftedClasss}">
+            <div class="iconname">
+                <span class="label-container ${iconClass}">${iconName}</span>
+           </div>
                 <span class="label-container ${iconClass}">${objectId}р</span>
-                <span class="r-container ${iconClass}">ПП·</span>
-                <span class="rls-container ${iconClass}">ㅤ</span> <!-- РЛС -->                  
+                <span class="r-container ${iconClass}">ПП</span>
+            <div class="iconname">
+                <span class="label-container ${iconClass}">${speed} ${randomNumber}</span> <!-- РЛС -->   
+            </div>       
+            <div class="iconname1">
+                <span class="label-container ${iconClass}">${randomNumber}°</span> <!-- РЛС -->   
+            </div>          
             </div>
         </div>
     `;
@@ -1238,7 +1265,6 @@ if (!iconCreated) {
     document.getElementById('warning-message').classList.add('hidden');
     iconCreated = true;
 }
-
 // Сопоставление английских названий с русскими
 const translations = {
     "supercam": "Supercam",
