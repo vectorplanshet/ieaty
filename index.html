@@ -287,8 +287,8 @@ input[type="text"]:focus {
     white-space: nowrap;
 }
         .icon-container .icon {
-            width: 17.5px;
-            height: 17.5px;
+            width: 18px;
+            height: 18px;
             object-fit: cover;
             display: block;
         }
@@ -1233,17 +1233,9 @@ const randomNumber = Math.floor(Math.random() * 200) + 1;
         <div class="icon-container ${iconClass}">
             <img src="${iconUrl}" class="icon" />
              <div class="info-container ${shiftedClass} ${shiftedClasss}">
-            <div class="iconname">
-                <span class="label-container ${iconClass}">${iconName}</span>
-           </div>
                 <span class="label-container ${iconClass}">${objectId}р</span>
-                <span class="r-container ${iconClass}">ПП</span>
-            <div class="iconname">
-                <span class="label-container ${iconClass}">${speed} ${randomNumber}</span> <!-- РЛС -->   
-            </div>       
-            <div class="iconname1">
-                <span class="label-container ${iconClass}">${randomNumber}°</span> <!-- РЛС -->   
-            </div>          
+                <span class="r-container ${iconClass}">ПП·</span>
+                        <span class="rls-container ${iconClass}">ㅤ</span>
             </div>
         </div>
     `;
