@@ -15,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
     <script
     src="https://cdn.jsdelivr.net/gh/gokertanrisever/leaflet-ruler@master/src/leaflet-ruler.js"
     integrity="sha384-8SqKZR7V8uOetpjjbcNJHvwuHpb074WS0UXjCLhzfJUqYn3B/uWx1WVv5mwRp1mV"
@@ -1175,6 +1176,12 @@ updateOverlayFilter();
       </div>
     </div>
   `;
+            icon = L.divIcon({
+        className: 'icon',
+        html: iconHtml,
+        iconSize: [6.5, 6.5], // общий размер
+        iconAnchor: [10, 10],
+    });
 } else if (iconClass === 'kr') {
       iconUrl = 'kalibr.png';
       iconClass = 'red-id';
@@ -1188,6 +1195,12 @@ updateOverlayFilter();
       </div>
     </div>
   `;
+      icon = L.divIcon({
+        className: 'icon',
+        html: iconHtml,
+        iconSize: [3, 3],      // 👈 спец. размер для KR
+        iconAnchor: [3, 9], // 👈 спец. якорь для KR
+    });
 } else if (iconClass === 'zl') {
   const objectId2 = getNextObjectIdBlue();
     iconUrl = 'zl.png';
@@ -1201,6 +1214,12 @@ updateOverlayFilter();
             </div>
         </div>
     `;
+              icon = L.divIcon({
+        className: 'icon',
+        html: iconHtml,
+        iconSize: [6.5, 6.5], // общий размер
+        iconAnchor: [10, 10],
+    });
 } else if (iconClass === 'blue-id') {
   const objectId2 = getNextObjectIdBlue();
     iconUrl = 'blue.png';
@@ -1214,6 +1233,12 @@ updateOverlayFilter();
       </div>
     </div>
   `;
+          icon = L.divIcon({
+        className: 'icon',
+        html: iconHtml,
+        iconSize: [6.5, 6.5], // общий размер
+        iconAnchor: [10, 10],
+    });
 } else {
     const iconTypes = {
     "shahed 238.png": "Ударний дрон",
@@ -1239,16 +1264,15 @@ const randomNumber = Math.floor(Math.random() * 200) + 1;
             </div>
         </div>
     `;
+        icon = L.divIcon({
+        className: 'icon',
+        html: iconHtml,
+        iconSize: [6.5, 6.5], // общий размер
+        iconAnchor: [10, 10],
+    });
 }
 }
 let iconCreated = false;
-
-const icon = L.divIcon({
-    className: 'icon',
-    html: iconHtml,
-    iconSize: [6.5, 6.5],
-    iconAnchor: [10, 10],
-});
 
 const marker = L.marker([lat, lng], { icon }).addTo(map);
 
