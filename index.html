@@ -1443,7 +1443,7 @@ function removeTrailPopup() {
 
 function maybeAddSquarePopup(lat, lng) {
     // Случайное расстояние от 1 до 10 км
-    const randomDistance = 1000 + Math.random() * 29000; // метры
+    const randomDistance = 1000 + Math.random() * 49000; // метры
     const distanceFromLast = haversine(lastPointPopup[0], lastPointPopup[1], lat, lng);
 
     if (distanceFromLast >= randomDistance) {
@@ -1455,7 +1455,7 @@ function maybeAddSquarePopup(lat, lng) {
 
 function addSquarePopup(lat, lng) {
     const square = L.marker([lat, lng], {
-        icon: L.divIcon({ className: 'popup-square', iconSize: [4, 4] }),
+        icon: L.divIcon({ className: 'popup-square', iconSize: [3, 3] }),
         pane: 'squaresPane'
     }).addTo(map);
     popupMarkers.push(square);
