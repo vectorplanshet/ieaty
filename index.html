@@ -1443,7 +1443,7 @@ function removeTrailPopup() {
 
 function maybeAddSquarePopup(lat, lng) {
     // Случайное расстояние от 1 до 10 км
-    const randomDistance = 1000 + Math.random() * 19000; // метры
+    const randomDistance = 1000 + Math.random() * 29000; // метры
     const distanceFromLast = haversine(lastPointPopup[0], lastPointPopup[1], lat, lng);
 
     if (distanceFromLast >= randomDistance) {
